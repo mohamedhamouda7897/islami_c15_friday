@@ -18,11 +18,13 @@ class SuraItem extends StatelessWidget {
     return Row(
       children: [
         Stack(
-
           alignment: Alignment.center,
           children: [
-            Image.asset("assets/images/index_ic.png",
-            height: 52,width: 52,),
+            Image.asset(
+              "assets/images/index_ic.png",
+              height: 52,
+              width: 52,
+            ),
             Text(
               "$index",
               style: TextStyle(fontSize: 18, color: Colors.white),
