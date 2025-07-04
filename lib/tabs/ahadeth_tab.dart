@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_c15_friday/hadeth_details_screen.dart';
 import 'package:islami_c15_friday/models/hadeth_model.dart';
 
 class AhadethTab extends StatefulWidget {
@@ -23,56 +24,64 @@ class _AhadethTabState extends State<AhadethTab> {
       items: AhadethData.map((hadeth) {
         return Builder(
           builder: (BuildContext context) {
-            return Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE2BE7F),
-                      borderRadius: BorderRadius.circular(20)),
-                  margin: EdgeInsets.symmetric(horizontal: 12),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 18, right: 8, left: 8),
-                  child: Image.asset(
-                    "assets/images/sura_details_bg.png",
-                    color: Colors.black,
+            return InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, HadethDetailsScreen.routeName,
+
+                arguments: hadeth
+                );
+              },
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xFFE2BE7F),
+                        borderRadius: BorderRadius.circular(20)),
+                    margin: EdgeInsets.symmetric(horizontal: 12),
                   ),
-                ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 28.0),
-                      child: Text(
-                        hadeth.title,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.elMessiri(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF202020)),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 18, right: 8, left: 8),
+                    child: Image.asset(
+                      "assets/images/sura_details_bg.png",
+                      color: Colors.black,
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(26.0),
-                        child: ListView.builder(
-                          itemBuilder: (context, index) {
-                            return Text(
-                              hadeth.content[index],
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.elMessiri(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF202020)),
-                            );
-                          },
-                          itemCount: hadeth.content.length,
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 28.0),
+                        child: Text(
+                          hadeth.title,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.elMessiri(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF202020)),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              ],
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(26.0),
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              return Text(
+                                hadeth.content[index],
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.elMessiri(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF202020)),
+                              );
+                            },
+                            itemCount: hadeth.content.length,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             );
           },
         );
