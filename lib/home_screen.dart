@@ -17,12 +17,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
+  List<String> bgName = [
+    'home_bg',
+    'sebha_bg',
+    "radio_bg",
+    "ahadeth_bg",
+    "time_bg"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/home_bg.png"),
+              image: AssetImage("assets/images/${bgName[currentIndex]}.png"),
               fit: BoxFit.fill)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -58,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               BottomNavigationBarItem(
                   icon: _buildImage("time", 4), label: "Dates"),
             ]),
-        body:tabs[currentIndex],
+        body: tabs[currentIndex],
       ),
     );
   }
@@ -74,16 +82,16 @@ class _HomeScreenState extends State<HomeScreen> {
   _buildImage(String name, int index) {
     return index == currentIndex
         ? Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(66),
-          color: Color(0xFF202020).withOpacity(.6)),
-      child: ImageIcon(AssetImage(
-        "assets/images/$name.png",
-      )),
-    )
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(66),
+                color: Color(0xFF202020).withOpacity(.6)),
+            child: ImageIcon(AssetImage(
+              "assets/images/$name.png",
+            )),
+          )
         : ImageIcon(AssetImage(
-      "assets/images/$name.png",
-    ));
+            "assets/images/$name.png",
+          ));
   }
 }
