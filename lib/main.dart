@@ -9,14 +9,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: IntroductionAppScreen.routeName,
       routes: {
-        IntroductionAppScreen.routeName: (context) => const IntroductionAppScreen(),
+        IntroductionAppScreen.routeName: (context) =>
+            const IntroductionAppScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
       },
       debugShowCheckedModeBanner: false,
