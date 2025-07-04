@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_c15_friday/horizontal_sura_item.dart';
+import 'package:islami_c15_friday/models/sura_item_model.dart';
+import 'package:islami_c15_friday/sura_details_screen.dart';
 import 'package:islami_c15_friday/sura_item.dart';
 
 class QuranTab extends StatelessWidget {
@@ -237,7 +239,6 @@ class QuranTab extends StatelessWidget {
     "الفلق",
     "الناس"
   ];
-
   List<String> suraNamesEn = [
     "Al-Fatiha",
     "Al-Baqarah",
@@ -360,7 +361,7 @@ class QuranTab extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset("assets/images/islami_header.png"),
+
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: TextField(
@@ -454,11 +455,18 @@ class QuranTab extends StatelessWidget {
               ),
               padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
-                return SuraItem(
-                  index: index + 1,
-                  nameAr: suraNames[index],
-                  nameEn: suraNamesEn[index],
-                  numOfVerses: numOfVerses[index],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, SuraDetailsScreen.routeName,
+                        arguments: SuraItemModel(
+                            suraNames[index], suraNamesEn[index], index));
+                  },
+                  child: SuraItem(
+                    index: index + 1,
+                    nameAr: suraNames[index],
+                    nameEn: suraNamesEn[index],
+                    numOfVerses: numOfVerses[index],
+                  ),
                 );
                 // return Text(
                 //   suraNames[index],

@@ -66,7 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
               BottomNavigationBarItem(
                   icon: _buildImage("time", 4), label: "Dates"),
             ]),
-        body: tabs[currentIndex],
+        body: Column(
+          children: [
+            Image.asset("assets/images/islami_header.png"),
+            Expanded(child: tabs[currentIndex]),
+          ],
+        ),
       ),
     );
   }
